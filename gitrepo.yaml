@@ -1,0 +1,17 @@
+kind: GitRepo
+apiVersion: fleet.cattle.io/v1alpha1
+metadata:
+  name: test-chart-gitrepo
+  namespace: fleet-default
+spec:
+  repo: https://github.com/atoy3731/dumb-test-chart.git
+  branch: main
+  targets:
+  - clusterSelector:
+      matchExpressions:
+      - key: provider.cattle.io
+        operator: NotIn
+        values:
+        - harvester
+  paths:
+  - "./chart"
